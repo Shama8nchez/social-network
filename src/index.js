@@ -51,11 +51,26 @@ const dialogsDB = [
   },
 ];
 
+const messages = [
+  {
+    id: 1,
+    message: 'Hello!',
+  },
+  {
+    id: 2,
+    message: 'How are you?',
+  },
+  {
+    id: 3,
+    message: 'Have fun!',
+  },
+]
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App posts={postsDB} dialogs={dialogsDB} />
+      <App posts={postsDB} dialogs={dialogsDB} messages={messages} />
     </BrowserRouter>
   </React.StrictMode>
 );
