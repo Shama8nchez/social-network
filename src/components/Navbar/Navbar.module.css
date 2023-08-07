@@ -1,0 +1,17 @@
+.navbar {
+  border: 1px solid rgb(59, 59, 59);
+  color: rgb(59, 59, 59);
+  font-size: 18px;
+}
+
+.navbarLink {
+  padding: 5px;
+  margin: 5px 0;
+  display: block;
+  text-decoration: none;
+  color: rgb(59, 59, 59);
+}
+
+.activeLink {
+  font-weight: 700;
+}
