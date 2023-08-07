@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import classes from './Navbar.module.css';
+import UsersList from './UsersList/UsersList';
 
 const Navbar = () => {
   return (
@@ -14,6 +15,7 @@ const Navbar = () => {
         isActive ? `${classes.navbarLink} ${classes.activeLink}` : classes.navbarLink
       }
       >Dialogs</NavLink>
+      <UsersList />
     </div>
   )
 }
