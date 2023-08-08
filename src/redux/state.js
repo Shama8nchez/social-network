@@ -8,18 +8,21 @@ const state = {
       ],
       newPost: '',
     },
-    dialogsDB: [
-      { id: 1, userName: 'Andrey' },
-      { id: 2, userName: 'Anna' },
-      { id: 3, userName: 'Eugeniy' },
-      { id: 4, userName: 'Fedor' },
-      { id: 5, userName: 'Denis' },
-    ],
-    messages: [
-      { id: 1, message: 'Hello!' },
-      { id: 2, message: 'How are you?' },
-      { id: 3, message: 'Have fun!' },
-    ]
+    dialogsDB: {
+      dialogsUsers: [
+        { id: 1, userName: 'Andrey' },
+        { id: 2, userName: 'Anna' },
+        { id: 3, userName: 'Eugeniy' },
+        { id: 4, userName: 'Fedor' },
+        { id: 5, userName: 'Denis' },
+      ],
+      messages: [
+        { id: 1, message: 'Hello!' },
+        { id: 2, message: 'How are you?' },
+        { id: 3, message: 'Have fun!' },
+      ],
+      newMessage: '',
+    },
   };
 
   let reRender = () => {
@@ -36,6 +39,19 @@ const state = {
 
   export const typePost = (value) => {
     state.postsDB.newPost = value;
+    reRender();
+  };
+
+  export const addMessage = () => {
+    if (state.dialogsDB.newMessage.trim()) {
+      state.dialogsDB.messages.push({ id: 4, message: state.dialogsDB.newMessage });
+      state.dialogsDB.newMessage = '';
+      reRender();
+    }
+  };
+
+  export const typeMessage = (value) => {
+    state.dialogsDB.newMessage = value;
     reRender();
   };
 
