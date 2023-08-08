@@ -1,10 +1,13 @@
 const state = {
-    postsDB: [
-      { id: 1, post: "Hello!", likesCount: 78 },
-      { id: 2, post: "yoyoy!!", likesCount: 26 },
-      { id: 3, post: "aliluya!", likesCount: 11 },
-      { id: 4, post: "Let's go!", likesCount: 43 },
-    ],
+    postsDB: {
+      posts: [
+        { id: 1, post: "Hello!", likesCount: 78 },
+        { id: 2, post: "yoyoy!!", likesCount: 26 },
+        { id: 3, post: "aliluya!", likesCount: 11 },
+        { id: 4, post: "Let's go!", likesCount: 43 },
+      ],
+      newPost: '',
+    },
     dialogsDB: [
       { id: 1, userName: 'Andrey' },
       { id: 2, userName: 'Anna' },
@@ -24,7 +27,15 @@ const state = {
   }
   
   export const addPost = () => {
-    state.postsDB.push({ id: 5, post: "Let's go!", likesCount: 0 });
+    if (state.postsDB.newPost.trim()) {
+      state.postsDB.posts.push({ id: 5, post: state.postsDB.newPost, likesCount: 0 });
+      state.postsDB.newPost = '';
+      reRender();
+    }
+  };
+
+  export const typePost = (value) => {
+    state.postsDB.newPost = value;
     reRender();
   };
 

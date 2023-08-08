@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import state, { addPost, subscribe } from './redux/state';
+import state, { addPost, subscribe, typePost } from './redux/state';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,7 +13,7 @@ const reRender = () => {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App posts={state.postsDB} dialogs={state.dialogsDB} messages={state.messages} addPost={addPost} />
+        <App posts={state.postsDB.posts} newPost={state.postsDB.newPost} dialogs={state.dialogsDB} messages={state.messages} addPost={addPost} typePost={typePost} />
       </BrowserRouter>
     </React.StrictMode>
   );
