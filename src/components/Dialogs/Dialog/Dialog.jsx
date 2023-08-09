@@ -6,12 +6,12 @@ const Dialog = (props) => {
   const refTextArea = React.createRef();
 
   const addMessage = () => {
-    props.addMessage()
+    props.dispatch({type: 'ADD_MESSAGE'})
   }
 
   const typeMessage = () => {
     let newText = refTextArea.current.value;
-    props.typeMessage(newText)
+    props.dispatch({type: 'TYPE_MESSAGE', value: newText})
   }
 
   return (

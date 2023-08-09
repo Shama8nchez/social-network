@@ -14,8 +14,9 @@ const reRender = () => {
     <React.StrictMode>
       <BrowserRouter>
         <App posts={store.state.postsDB.posts} newPost={store.state.postsDB.newPost} dialogs={store.state.dialogsDB}
-          addPost={store.addPost} typePost={store.typePost}
-          addMessage={store.addMessage} typeMessage={store.typeMessage} 
+          /* addPost={store.addPost.bind(store)} typePost={store.typePost.bind(store)}
+          addMessage={store.addMessage.bind(store)} typeMessage={store.typeMessage.bind(store)} */
+          dispatch={store.dispatch.bind(store)} 
         />
       </BrowserRouter>
     </React.StrictMode>

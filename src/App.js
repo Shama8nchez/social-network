@@ -14,8 +14,8 @@ function App(props) {
         <div className='content'>
           {/* <Profile /> */}
           <Routes>
-            <Route path='/' element={<Profile posts={props.posts} newPost={props.newPost} addPost={props.addPost} typePost={props.typePost} />} />
-            <Route path='/dialogs/*' element={<Dialogs dialogs={props.dialogs} typeMessage={props.typeMessage} addMessage={props.addMessage} />} />
+            <Route path='/' element={<Profile posts={props.posts} newPost={props.newPost} dispatch={props.dispatch} />} />
+            <Route path='/dialogs/*' element={<Dialogs dialogs={props.dialogs} dispatch={props.dispatch} />} />
           </Routes>
         </div>
       </main>

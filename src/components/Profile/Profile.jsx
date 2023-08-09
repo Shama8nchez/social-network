@@ -6,7 +6,7 @@ const Profile = (props) => {
     <div className={classes.profile}>
       <img src="https://www.everwallpaper.co.uk/cdn/shop/collections/marble-geometry-wallpaper-mural.jpg?v=1660198030" alt="wp" className={classes.wp} />
       <div>Ava + description</div>
-      <Posts posts={props.posts} addPost={props.addPost} typePost={props.typePost} newPost={props.newPost}  />
+      <Posts posts={props.posts} addPost={props.addPost} dispatch={props.dispatch} />
     </div>
   )
 }

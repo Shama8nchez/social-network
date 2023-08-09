@@ -4,14 +4,14 @@ import React from 'react';
 
 const Posts = (props) => {
   const addPost = () => {
-    props.addPost()
+    props.dispatch({type: 'ADD_POST'})
   }
 
   let textAreaRef = React.createRef();
 
   const typePost = () => {
     let newText = textAreaRef.current.value;
-    props.typePost(newText)
+    props.dispatch({type: 'TYPE_POST', value: newText})
   }
 
   return (
