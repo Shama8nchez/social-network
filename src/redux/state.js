@@ -1,3 +1,5 @@
+import reducer from "./reducer";
+
 const store = {
   state: {
     postsDB: {
@@ -31,34 +33,7 @@ const store = {
   },
 
   dispatch(action) {
-    switch (action.type) {
-      case ADD_POST: {
-        if (this.state.postsDB.newPost.trim()) {
-          this.state.postsDB.posts.push({ id: 5, post: this.state.postsDB.newPost, likesCount: 0 });
-          this.state.postsDB.newPost = '';
-          this.reRender();
-        }
-        break
-      }
-      case TYPE_POST: {
-        this.state.postsDB.newPost = action.value;
-        break
-      }
-      case SEND_MESSAGE: {
-        if (this.state.dialogsDB.newMessage.trim()) {
-          this.state.dialogsDB.messages.push({ id: 4, message: this.state.dialogsDB.newMessage });
-          this.state.dialogsDB.newMessage = '';
-        }
-        break
-      }
-      case TYPE_MESSAGE: {
-        this.state.dialogsDB.newMessage = action.value;
-        break;
-      }
-      default:
-        return
-    }
-
+    this.state = reducer(this.state, action)
     this.reRender();
   },
 
@@ -66,15 +41,5 @@ const store = {
     this.reRender = callback;
   },
 }
-
-const ADD_POST = 'ADD_POST';
-const TYPE_POST = 'TYPE_POST';
-const SEND_MESSAGE = 'ADD_MESSAGE';
-const TYPE_MESSAGE = 'TYPE_MESSAGE';
-
-export const addPostAC = () => ({type: ADD_POST});
-export const typePostAC = (value) => ({type: TYPE_POST, value: value});
-export const sendMessageAC = () => ({type: SEND_MESSAGE});
-export const typeMessageAC = (value) => ({type: TYPE_MESSAGE, value: value});
 
 export default store;

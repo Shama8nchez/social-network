@@ -1,7 +1,7 @@
 import classes from './Posts.module.css';
 import Post from './Post/Post';
 import React from 'react';
-import { addPostAC, typePostAC } from '../../../redux/state';
+import { addPostAC, typePostAC } from '../../../redux/reducer';
 
 const Posts = (props) => {
   const addPost = () => {
