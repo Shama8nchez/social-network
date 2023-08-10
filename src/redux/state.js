@@ -32,7 +32,7 @@ const store = {
 
   dispatch(action) {
     switch (action.type) {
-      case 'ADD_POST': {
+      case ADD_POST: {
         if (this.state.postsDB.newPost.trim()) {
           this.state.postsDB.posts.push({ id: 5, post: this.state.postsDB.newPost, likesCount: 0 });
           this.state.postsDB.newPost = '';
@@ -40,18 +40,18 @@ const store = {
         }
         break
       }
-      case 'TYPE_POST': {
+      case TYPE_POST: {
         this.state.postsDB.newPost = action.value;
         break
       }
-      case 'ADD_MESSAGE': {
+      case SEND_MESSAGE: {
         if (this.state.dialogsDB.newMessage.trim()) {
           this.state.dialogsDB.messages.push({ id: 4, message: this.state.dialogsDB.newMessage });
           this.state.dialogsDB.newMessage = '';
         }
         break
       }
-      case 'TYPE_MESSAGE': {
+      case TYPE_MESSAGE: {
         this.state.dialogsDB.newMessage = action.value;
         break;
       }
@@ -62,35 +62,19 @@ const store = {
     this.reRender();
   },
 
-  /* addPost() {
-    if (this.state.postsDB.newPost.trim()) {
-      this.state.postsDB.posts.push({ id: 5, post: this.state.postsDB.newPost, likesCount: 0 });
-      this.state.postsDB.newPost = '';
-      this.reRender();
-    }
-  },
-
-  typePost(value) {
-    this.state.postsDB.newPost = value;
-    this.reRender();
-  },
-
-  addMessage() {
-    if (this.state.dialogsDB.newMessage.trim()) {
-      this.state.dialogsDB.messages.push({ id: 4, message: this.state.dialogsDB.newMessage });
-      this.state.dialogsDB.newMessage = '';
-      this.reRender();
-    }
-  },
-
-  typeMessage(value) {
-    this.state.dialogsDB.newMessage = value;
-    this.reRender();
-  }, */
-
   subscribe(callback) {
     this.reRender = callback;
   },
 }
+
+const ADD_POST = 'ADD_POST';
+const TYPE_POST = 'TYPE_POST';
+const SEND_MESSAGE = 'ADD_MESSAGE';
+const TYPE_MESSAGE = 'TYPE_MESSAGE';
+
+export const addPostAC = () => ({type: ADD_POST});
+export const typePostAC = (value) => ({type: TYPE_POST, value: value});
+export const sendMessageAC = () => ({type: SEND_MESSAGE});
+export const typeMessageAC = (value) => ({type: TYPE_MESSAGE, value: value});
 
 export default store;

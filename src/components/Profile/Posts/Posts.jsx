@@ -1,17 +1,18 @@
 import classes from './Posts.module.css';
 import Post from './Post/Post';
 import React from 'react';
+import { addPostAC, typePostAC } from '../../../redux/state';
 
 const Posts = (props) => {
   const addPost = () => {
-    props.dispatch({type: 'ADD_POST'})
+    props.dispatch(addPostAC())
   }
 
   let textAreaRef = React.createRef();
 
   const typePost = () => {
     let newText = textAreaRef.current.value;
-    props.dispatch({type: 'TYPE_POST', value: newText})
+    props.dispatch(typePostAC(newText))
   }
 
   return (

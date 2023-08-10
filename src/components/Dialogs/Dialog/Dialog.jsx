@@ -1,17 +1,18 @@
 //import classes from './Dialog.module.css';
 
 import React from "react";
+import { sendMessageAC, typeMessageAC } from "../../../redux/state";
 
 const Dialog = (props) => {
   const refTextArea = React.createRef();
 
   const addMessage = () => {
-    props.dispatch({type: 'ADD_MESSAGE'})
+    props.dispatch(sendMessageAC())
   }
 
   const typeMessage = () => {
     let newText = refTextArea.current.value;
-    props.dispatch({type: 'TYPE_MESSAGE', value: newText})
+    props.dispatch(typeMessageAC(newText))
   }
 
   return (
