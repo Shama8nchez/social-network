@@ -1,7 +1,7 @@
 //import classes from './Dialog.module.css';
 
 import React from "react";
-import { sendMessageAC, typeMessageAC } from "../../../redux/reducer";
+import { sendMessageAC, typeMessageAC } from "../../../redux/dialogReducer";
 
 const Dialog = (props) => {
   const refTextArea = React.createRef();

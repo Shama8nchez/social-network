@@ -1,4 +1,5 @@
-import reducer from "./reducer";
+import dialogReducer from "./dialogReducer";
+import profileReducer from "./profileReducer";
 
 const store = {
   state: {
@@ -33,7 +34,8 @@ const store = {
   },
 
   dispatch(action) {
-    this.state = reducer(this.state, action)
+    this.state.dialogsDB = dialogReducer(this.state.dialogsDB, action);
+    this.state.postsDB = profileReducer(this.state.postsDB, action)
     this.reRender();
   },
 
