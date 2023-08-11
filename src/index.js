@@ -4,8 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import store from './redux/state';
-
+import store from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -13,7 +12,7 @@ const reRender = () => {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App posts={store.state.postsDB.posts} newPost={store.state.postsDB.newPost} dialogs={store.state.dialogsDB}
+        <App posts={store.getState().postsDB.posts} newPost={store.getState().postsDB.newPost} dialogs={store.getState().dialogsDB}
           dispatch={store.dispatch.bind(store)} 
         />
       </BrowserRouter>
