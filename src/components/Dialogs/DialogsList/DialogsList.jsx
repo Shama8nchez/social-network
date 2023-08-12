@@ -1,10 +1,11 @@
-import classes from './DialogsList.module.css';
+
 import DialogsItem from './DialogsItem/DialogsItem';
 
 const DialogsList = (props) => {
+  const dialogsUsers = props.store.getState().dialogsDB.dialogsUsers
   return (
-    <div className={classes.dialogsList}>
-      {props.dialogsUsers.map(dialog => <DialogsItem key={dialog.id} id={dialog.id} name={dialog.userName} />)}
+    <div>
+      {dialogsUsers.map(dialog => <DialogsItem key={dialog.id} id={dialog.id} name={dialog.userName} />)}
     </div>
   )
 }

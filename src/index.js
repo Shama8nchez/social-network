@@ -12,9 +12,7 @@ const reRender = () => {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App posts={store.getState().postsDB.posts} newPost={store.getState().postsDB.newPost} dialogs={store.getState().dialogsDB}
-          dispatch={store.dispatch.bind(store)} 
-        />
+        <App store={store} />
       </BrowserRouter>
     </React.StrictMode>
   );

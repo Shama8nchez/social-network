@@ -1,18 +1,17 @@
 import classes from './Posts.module.css';
 import Post from './Post/Post';
 import React from 'react';
-import { addPostAC, typePostAC } from '../../../redux/profileReducer';
 
 const Posts = (props) => {
   const addPost = () => {
-    props.dispatch(addPostAC())
+    props.addPost()
   }
 
   let textAreaRef = React.createRef();
 
   const typePost = () => {
     let newText = textAreaRef.current.value;
-    props.dispatch(typePostAC(newText))
+    props.typePost(newText)
   }
 
   return (
