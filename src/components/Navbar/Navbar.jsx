@@ -15,6 +15,11 @@ const Navbar = () => {
         isActive ? `${classes.navbarLink} ${classes.activeLink}` : classes.navbarLink
       }
       >Dialogs</NavLink>
+      <NavLink
+        to='/users' className={({ isActive }) =>
+        isActive ? `${classes.navbarLink} ${classes.activeLink}` : classes.navbarLink
+      }
+      >Users</NavLink>
       <UsersList />
     </div>
   )
