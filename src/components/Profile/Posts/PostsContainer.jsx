@@ -1,20 +1,21 @@
-import React from 'react';
 import { addPostAC, typePostAC } from '../../../redux/profileReducer';
 import Posts from './Posts';
+import { connect } from 'react-redux';
 
-const PostsContainer = (props) => {
-  const state = props.store.getState().postsDB;
-  const addPost = () => {
-    props.store.dispatch(addPostAC())
+const mapStateToProps = (state) => {
+  return {
+    posts: state.postsDB.posts,
+    newPost: state.postsDB.newPost
   }
-
-  const typePost = (newText) => {
-    props.store.dispatch(typePostAC(newText));
-  }
-
-  return (
-    <Posts addPost={addPost} typePost={typePost} posts={state.posts} newPost={state.newPost} />
-  )
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addPost: () => dispatch(addPostAC()),
+    typePost: (newText) => dispatch(typePostAC(newText))
+  }
+}
+
+const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts);
 
 export default PostsContainer;

@@ -1,12 +1,12 @@
 import classes from './Dialogs.module.css';
-import DialogsList from './DialogsList/DialogsList';
+import DialogsListContainer from './DialogsList/DialogsListContainer';
 import DialogContainer from './Dialog/DialogContainer';
 
 const Dialogs = (props) => {
   return (
     <div className={classes.dialogs}>
-      <DialogsList store={props.store} />
-      <DialogContainer store={props.store} />
+      <DialogsListContainer />
+      <DialogContainer />
     </div>
   )
 }
