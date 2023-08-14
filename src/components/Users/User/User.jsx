@@ -5,13 +5,13 @@ const User = (props) => {
   return (
     <div className={classes.user}>
       <div className={classes.userInfo}>
-        <div className={classes.userName}>{props.user.userName}</div>
+        <div className={classes.userName}>{props.user.name}</div>
         <div>
           <div className={classes.userStatus}>Status: {props.user.status}</div>
-          <div className={classes.userLocation}>Location: {props.user.location.country + ' ' + props.user.location.city}</div>
+          {/* <div className={classes.userLocation}>Location: {props.user.location.country + ' ' + props.user.location.city}</div> */}
         </div>
       </div>
-      <button className='userButton' onClick={props.user.isFollow ? () => props.unfollowUser(props.user.id) : () => props.followUser(props.user.id)}>{props.user.isFollow ? 'Unfollow' : 'Follow'}</button>
+      <button className='userButton' onClick={props.user.followed ? () => props.unfollowUser(props.user.id) : () => props.followUser(props.user.id)}>{props.user.followed ? 'Unfollow' : 'Follow'}</button>
     </div>
   )
 }
