@@ -1,24 +1,17 @@
 const FOLLOW_USER = 'FOLLOW_USER';
 const UNFOLLOW_USER = 'UNFOLLOW_USER';
 const SET_USERS = 'SET_USERS';
+const SET_PAGE = 'SET_PAGE';
 
 export const followAC = (id) => ({type: FOLLOW_USER, id});
 export const unfollowAC = (id) => ({type: UNFOLLOW_USER, id});
 export const setUsersAC = (data) => ({type: SET_USERS, data});
-
-/* const initialState = {
-    users: [
-      { id: 1, userName: 'Andrey', isFollow: true, status: 'maybe next time', location: {country: 'Belarus', city: 'Minsk'} },
-      { id: 2, userName: 'Jana', isFollow: true, status: 'hello world', location: {country: 'Kyiv', city: 'Ukraine'} },
-      { id: 3, userName: 'Leon', isFollow: true, status: 'san francisco', location: {country: 'Belarus', city: 'Minsk'} },
-      { id: 4, userName: 'Frank', isFollow: false, status: 'have fun', location: {country: 'Belarus', city: 'Grodno'} },
-      { id: 5, userName: 'Valery', isFollow: true, status: 'come on', location: {country: 'Poland', city: 'Krakow'} },
-      { id: 6, userName: 'Olga', isFollow: false, status: 'i believe i can fly', location: {country: 'Spain', city: 'Vigo'} },
-    ],
-} */
+export const setPageAC = (page) => ({type: SET_PAGE, page});
 
 const initialState = {
   users: [],
+  totalPages: 5,
+  currentPage: 1,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -44,9 +37,16 @@ const usersReducer = (state = initialState, action) => {
     }
 
     case SET_USERS: {
-      return { 
+      return {
         ...state,
         users: action.data
+      }
+    }
+
+    case SET_PAGE: {
+      return {
+        ...state,
+        currentPage: action.page
       }
     }
 

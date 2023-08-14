@@ -2,11 +2,13 @@
 /* import classes from './Profile.module.css'; */
 import { connect } from "react-redux";
 import Users from "./Users";
-import { followAC, unfollowAC, setUsersAC } from "../../redux/usersReducer";
+import { followAC, unfollowAC, setUsersAC, setPageAC } from "../../redux/usersReducer";
 
 const mapStateToProps = (state) => {
   return {
     users: state.usersDB.users,
+    totalPages: state.usersDB.totalPages,
+    currentPage: state.usersDB.currentPage,
   }
 }
 
@@ -15,6 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     followUser: (id) => dispatch(followAC(id)),
     unfollowUser: (id) => dispatch(unfollowAC(id)),
     setUsers: (data) => dispatch(setUsersAC(data)),
+    setPage: (page) => dispatch(setPageAC(page)),
   }
 }
 
