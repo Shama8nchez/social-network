@@ -9,8 +9,10 @@
   display: flex;
 }
 
-.userName {
+.userLink {
   width: 20%;
+  color: rgb(59, 59, 59);
+  text-decoration: none;
 }
 
 .userStatus {

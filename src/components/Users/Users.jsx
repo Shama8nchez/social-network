@@ -38,10 +38,8 @@ class Users extends React.Component {
         <UsersNav pages={pages} handleClick={this.handleClick} currentPage={this.props.currentPage} />
         {!this.props.isLoading ?
           this.props.users.map((user) => 
-            (<User user={user} followUser={this.props.followUser} unfollowUser={this.props.unfollowUser} key={user.id} />)) :
+            (<User user={user} followUser={this.props.followUser} unfollowUser={this.props.unfollowUser} key={user.id} id={user.id} />)) :
           <Loader />}
-        {/* {this.props.users.map((user) => 
-            (<User user={user} followUser={this.props.followUser} unfollowUser={this.props.unfollowUser} key={user.id} />))} */}
       </div>
     )
   }

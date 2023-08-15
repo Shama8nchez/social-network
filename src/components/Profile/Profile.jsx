@@ -1,7 +1,7 @@
 import PostsContainer from './Posts/PostsContainer';
 import classes from './Profile.module.css';
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <div className={classes.profile}>
       <img src="https://www.everwallpaper.co.uk/cdn/shop/collections/marble-geometry-wallpaper-mural.jpg?v=1660198030" alt="wp" className={classes.wp} />

@@ -1,11 +1,14 @@
+import { NavLink } from 'react-router-dom';
 import classes from './User.module.css'
 
 const User = (props) => {
-
   return (
     <div className={classes.user}>
       <div className={classes.userInfo}>
-        <div className={classes.userName}>{props.user.name}</div>
+        <NavLink to={`/${props.id}`} className={classes.userLink}>
+          {props.user.name}
+        </NavLink>
+        
         <div>
           <div className={classes.userStatus}>Status: {props.user.status}</div>
         </div>

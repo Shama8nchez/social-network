@@ -3,18 +3,21 @@ const UNFOLLOW_USER = 'UNFOLLOW_USER';
 const SET_USERS = 'SET_USERS';
 const SET_PAGE = 'SET_PAGE';
 const LOADING = 'LOADING';
+const GET_USER = 'GET_USER';
 
 export const followAC = (id) => ({type: FOLLOW_USER, id});
 export const unfollowAC = (id) => ({type: UNFOLLOW_USER, id});
 export const setUsersAC = (data) => ({type: SET_USERS, data});
 export const setPageAC = (page) => ({type: SET_PAGE, page});
 export const loadingAC = (isLoading) => ({type: LOADING, isLoading});
+export const getUserAC = (user) => ({type: GET_USER, user});
 
 const initialState = {
   users: [],
   totalPages: 5,
   currentPage: 1,
   isLoading: false,
+  user: {}
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -57,6 +60,13 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.isLoading
+      }
+    }
+
+    case GET_USER: {
+      return {
+        ...state,
+        user: action.user
       }
     }
 
