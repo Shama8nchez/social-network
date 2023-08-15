@@ -1,14 +1,13 @@
-/* import PostsContainer from './Posts/PostsContainer'; */
-/* import classes from './Profile.module.css'; */
 import { connect } from "react-redux";
 import Users from "./Users";
-import { followAC, unfollowAC, setUsersAC, setPageAC } from "../../redux/usersReducer";
+import { followAC, unfollowAC, setUsersAC, setPageAC, loadingAC } from "../../redux/usersReducer";
 
 const mapStateToProps = (state) => {
   return {
     users: state.usersDB.users,
     totalPages: state.usersDB.totalPages,
     currentPage: state.usersDB.currentPage,
+    isLoading: state.usersDB.isLoading,
   }
 }
 
@@ -18,6 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     unfollowUser: (id) => dispatch(unfollowAC(id)),
     setUsers: (data) => dispatch(setUsersAC(data)),
     setPage: (page) => dispatch(setPageAC(page)),
+    loading: (isLoading) => dispatch(loadingAC(isLoading)),
   }
 }
 
