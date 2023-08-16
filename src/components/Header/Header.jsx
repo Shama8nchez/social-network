@@ -1,9 +1,11 @@
 import classes from './Header.module.css';
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header className={classes.header}>
-      <h1>Title</h1>
+      <div className={classes.login}>
+        {props.isLogin ? props.login : 'LOGIN'}
+      </div>
     </header>
   )
 }
