@@ -23,7 +23,11 @@ const userAPI = {
 
   unfollowUser(userId) {
     return instance.delete(`follow/${userId}`)
-  }
-}
+  },
+
+  setAuthUser() {
+    return instance.get('auth/me')
+  },
+} 
 
 export default userAPI;
