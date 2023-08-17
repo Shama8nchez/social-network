@@ -27,6 +27,13 @@ export const getUsers = (page = 1) => (dispatch) => {
   });
 }
 
+export const getUser = (userId) => (dispatch) => {
+  userAPI.getUser(userId)
+    .then(response => {
+      dispatch(getUserAC(response.data))
+    })
+}
+
 export const followUser = (userId) => (dispatch) => {
   dispatch(followingProgressAC(userId));
   userAPI.followUser(userId).then(response => {
