@@ -4,6 +4,8 @@ const SET_USERS = 'SET_USERS';
 const SET_PAGE = 'SET_PAGE';
 const LOADING = 'LOADING';
 const GET_USER = 'GET_USER';
+const FOLLOWING_PROGRESS = 'FOLLOWING_PROGRESS';
+const FOLLOWING_PROGRESS_END = 'FOLLOWING_PROGRESS_END';
 
 export const followAC = (id) => ({type: FOLLOW_USER, id});
 export const unfollowAC = (id) => ({type: UNFOLLOW_USER, id});
@@ -11,6 +13,8 @@ export const setUsersAC = (data) => ({type: SET_USERS, data});
 export const setPageAC = (page) => ({type: SET_PAGE, page});
 export const loadingAC = (isLoading) => ({type: LOADING, isLoading});
 export const getUserAC = (user) => ({type: GET_USER, user});
+export const followingProgressAC = (follow) => ({type: FOLLOWING_PROGRESS, follow});
+export const followingProgressEndAC = (follow) => ({type: FOLLOWING_PROGRESS_END, follow});
 
 const initialState = {
   users: [],
@@ -18,6 +22,7 @@ const initialState = {
   currentPage: 1,
   isLoading: false,
   user: null,
+  followingProgress: [],
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -67,6 +72,20 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user
+      }
+    }
+
+    case FOLLOWING_PROGRESS: {
+      return {
+        ...state,
+        followingProgress: [...state.followingProgress, action.follow]
+      }
+    }
+
+    case FOLLOWING_PROGRESS_END: {
+      return {
+        ...state,
+        followingProgress: state.followingProgress.filter(id => id !== action.follow)
       }
     }
 

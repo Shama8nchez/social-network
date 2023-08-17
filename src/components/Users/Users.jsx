@@ -25,14 +25,22 @@ class Users extends React.Component {
   }
 
   followUser = (userId) => {
+    this.props.following(userId);
     userAPI.followUser(userId).then(response => {
-        if (response.data.resultCode === 0) this.props.followUser(userId);
+        if (response.data.resultCode === 0) {
+          this.props.followUser(userId);
+          this.props.followingEnd(userId);
+        }
       });
   }
 
   unfollowUser = (userId) => {
+    this.props.following(userId);
     userAPI.unfollowUser(userId).then(response => {
-        if (response.data.resultCode === 0) this.props.unfollowUser(userId);
+        if (response.data.resultCode === 0) {
+          this.props.unfollowUser(userId);
+          this.props.followingEnd(userId);
+        }
       });
   }
 
@@ -47,7 +55,7 @@ class Users extends React.Component {
         <UsersNav pages={pages} handleClick={this.handleClick} currentPage={this.props.currentPage} />
         {!this.props.isLoading ?
           this.props.users.map((user) => 
-            (<User user={user} followUser={this.followUser} unfollowUser={this.unfollowUser} key={user.id} id={user.id} />)) :
+            (<User user={user} followUser={this.followUser} unfollowUser={this.unfollowUser} followingProgress={this.props.followingProgress} key={user.id} id={user.id} />)) :
           <Loader />}
       </div>
     )

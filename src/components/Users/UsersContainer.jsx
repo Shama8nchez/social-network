@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Users from "./Users";
-import { followAC, unfollowAC, setUsersAC, setPageAC, loadingAC } from "../../redux/usersReducer";
+import { followAC, unfollowAC, setUsersAC, setPageAC, loadingAC, followingProgressAC, followingProgressEndAC } from "../../redux/usersReducer";
 
 const mapStateToProps = (state) => {
   return {
@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
     totalPages: state.usersDB.totalPages,
     currentPage: state.usersDB.currentPage,
     isLoading: state.usersDB.isLoading,
+    followingProgress: state.usersDB.followingProgress,
   }
 }
 
@@ -18,6 +19,8 @@ const mapDispatchToProps = (dispatch) => {
     setUsers: (data) => dispatch(setUsersAC(data)),
     setPage: (page) => dispatch(setPageAC(page)),
     loading: (isLoading) => dispatch(loadingAC(isLoading)),
+    following: (follow) => dispatch(followingProgressAC(follow)),
+    followingEnd: (follow) => dispatch(followingProgressEndAC(follow)),
   }
 }
 

@@ -13,7 +13,10 @@ const User = (props) => {
           <div className={classes.userStatus}>Status: {props.user.status}</div>
         </div>
       </div>
-      <button className='userButton' onClick={props.user.followed ? () => props.unfollowUser(props.user.id) : () => props.followUser(props.user.id)}>{props.user.followed ? 'Unfollow' : 'Follow'}</button>
+      <button className='userButton'
+        onClick={props.user.followed ? () => props.unfollowUser(props.user.id) : () => props.followUser(props.user.id)}
+        disabled={props.followingProgress.some(id => id === props.user.id)}
+      >{props.user.followed ? 'Unfollow' : 'Follow'}</button>
     </div>
   )
 }
