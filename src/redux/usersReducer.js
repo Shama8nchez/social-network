@@ -1,3 +1,5 @@
+import userAPI from "../API/userAPI";
+
 const FOLLOW_USER = 'FOLLOW_USER';
 const UNFOLLOW_USER = 'UNFOLLOW_USER';
 const SET_USERS = 'SET_USERS';
@@ -15,6 +17,35 @@ export const loadingAC = (isLoading) => ({type: LOADING, isLoading});
 export const getUserAC = (user) => ({type: GET_USER, user});
 export const followingProgressAC = (follow) => ({type: FOLLOWING_PROGRESS, follow});
 export const followingProgressEndAC = (follow) => ({type: FOLLOWING_PROGRESS_END, follow});
+
+export const getUsers = (page = 1) => (dispatch) => {
+  dispatch(loadingAC(true));
+  dispatch(setPageAC(page));
+  userAPI.getUsers(page).then(response => {
+    dispatch(setUsersAC(response.data.items));
+    dispatch(loadingAC(false));
+  });
+}
+
+export const followUser = (userId) => (dispatch) => {
+  dispatch(followingProgressAC(userId));
+  userAPI.followUser(userId).then(response => {
+    if (response.data.resultCode === 0) {
+      dispatch(followAC(userId));
+      dispatch(followingProgressEndAC(userId));
+    }
+  });
+}
+
+export const unfollowUser = (userId) => (dispatch) => {
+  dispatch(followingProgressAC(userId));
+  userAPI.unfollowUser(userId).then(response => {
+    if (response.data.resultCode === 0) {
+      dispatch(unfollowAC(userId));
+      dispatch(followingProgressEndAC(userId));
+    }
+  });
+}
 
 const initialState = {
   users: [],
