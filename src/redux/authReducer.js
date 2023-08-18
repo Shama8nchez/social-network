@@ -23,7 +23,7 @@ const authReducer = (state = initialState, action) => {
       return { 
         ...state,
         ...action.authData,
-        isLogin: true,
+        isLogin: state.login ? true : false,
       }
     }
 

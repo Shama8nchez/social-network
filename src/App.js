@@ -3,8 +3,9 @@ import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/ProfileContainer';
-import Dialogs from './components/Dialogs/Dialogs';
 import UsersContainer from './components/Users/UsersContainer';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import Login from './components/Login/Login';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
           <Routes>
             <Route path='/' element={<ProfileContainer />} />
             <Route path='/:userID' element={<ProfileContainer />} />
-            <Route path='/dialogs/*' element={<Dialogs />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/dialogs/*' element={<DialogsContainer />} />
             <Route path='/users' element={<UsersContainer />} />
           </Routes>
         </div>
