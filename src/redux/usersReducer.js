@@ -56,7 +56,7 @@ export const unfollowUser = (userId) => (dispatch) => {
 
 const initialState = {
   users: [],
-  totalPages: 5,
+  totalPages: 10,
   currentPage: 1,
   isLoading: false,
   user: null,

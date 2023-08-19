@@ -1,8 +1,12 @@
+import profileAPI from "../API/profileAPI";
+
 const ADD_POST = 'ADD_POST';
 const TYPE_POST = 'TYPE_POST';
+const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
 
 export const addPostAC = () => ({type: ADD_POST});
 export const typePostAC = (value) => ({type: TYPE_POST, value: value});
+export const setProfileStatus = (data) => ({type: SET_PROFILE_STATUS, data});
 
 const initialState = {
     posts: [
@@ -12,6 +16,17 @@ const initialState = {
       { id: 4, post: "Let's go!", likesCount: 43 },
     ],
     newPost: '',
+    profileStatus: '',
+}
+
+export const getProfileStatus = (id) => (dispatch) => {
+  profileAPI.getStatus(id).then(response => dispatch(setProfileStatus(response.data)))
+}
+
+export const sendProfileStatus = (status) => (dispatch) => {
+  profileAPI.setStatus(status).then(responce => {
+    if (responce.data.resultCode === 0) dispatch(setProfileStatus(status))
+  })
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -31,6 +46,13 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         newPost: action.value
+      }
+    }
+
+    case SET_PROFILE_STATUS: {
+      return {
+        ...state,
+        profileStatus: action.data
       }
     }
 
