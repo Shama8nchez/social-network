@@ -1,16 +1,18 @@
 import { Formik, Field, Form } from 'formik';
+import { login } from '../../redux/authReducer';
+import { connect } from 'react-redux';
 
-const Login = () => {
+const Login = (props) => {
   return (
     <div>
       <h1>Login:</h1>
-      <LoginForm />
+      <LoginForm login={props.login} />
     </div>
     
   )
 }
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   
   return (
     <Formik
@@ -31,7 +33,7 @@ const LoginForm = () => {
         return errors;
       }}
       onSubmit={(values) => {
-        console.log(values);
+        props.login(values.Login, values.Password, values.RememeberMe)
       }}
     >
       {({ values, errors, touched, handleChange, handleReset }) => (
@@ -53,7 +55,7 @@ const LoginForm = () => {
             <Field id="RememeberMe" name="RememeberMe" type="checkbox" />
           </div>
 
-          <button type="submit" onClick={handleReset}>LOGIN</button>
+          <button type="submit">LOGIN</button>
         </Form>
       )}
       
@@ -61,4 +63,4 @@ const LoginForm = () => {
   )
 }
 
-export default Login
+export default connect(null, {login})(Login)
