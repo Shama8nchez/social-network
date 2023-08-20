@@ -8,12 +8,25 @@ export const setAuthUser = () => (dispatch) => {
   authAPI.setAuthUser().then(response => {
     if (response.data.resultCode === 0) {
       dispatch(setAuthUserAC({...response.data.data, isLogin: true}));
-    }
+    } else dispatch(setAuthUserAC({
+      id: null,
+      login: null,
+      email: null,
+      isLogin: false
+    }));
   });
 }
 
 export const login = (email, password, rememberMe) => (dispatch) => {
   authAPI.login(email, password, rememberMe).then(response => {
+    if (response.data.resultCode === 0) {
+      dispatch(setAuthUser());
+    }
+  })
+}
+
+export const logout = () => (dispatch) => {
+  authAPI.logout().then(response => {
     if (response.data.resultCode === 0) {
       dispatch(setAuthUser());
     }
