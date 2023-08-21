@@ -1,8 +1,11 @@
 import { Formik, Field, Form } from 'formik';
 import { login } from '../../redux/authReducer';
 import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 const Login = (props) => {
+  if (props.isLogin) return <Navigate to='/' />
+
   return (
     <div>
       <h1>Login:</h1>
@@ -36,7 +39,7 @@ const LoginForm = (props) => {
         props.login(values.Login, values.Password, values.RememeberMe)
       }}
     >
-      {({ values, errors, touched, handleChange, handleReset }) => (
+      {({ values, errors, touched, handleChange }) => (
         <Form>
           <div>
             <label htmlFor="Login">Login</label>
@@ -63,4 +66,10 @@ const LoginForm = (props) => {
   )
 }
 
-export default connect(null, {login})(Login)
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.auth.isLogin
+  }
+}
+
+export default connect(mapStateToProps, {login})(Login)
