@@ -1,5 +1,5 @@
 import React from "react";
-import Status from "./Status";
+import Status from "./StatusWithHook";
 import { sendProfileStatus } from "../../../redux/profileReducer";
 import { connect } from "react-redux";
 
