@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from './Status.module.css'
 
 const Status = (props) => {
+  console.log(props.profileStatus)
   const [editMode, setEditMode] = useState(false);
-  const [profileStatus, setProfileStatus] = useState(props.profileStatus)
+  const [profileStatus, setProfileStatus] = useState(props.profileStatus);
+
+  useEffect(() => {
+    setProfileStatus(props.profileStatus)
+  }, [props.profileStatus])
 
   const toggleEditMode = () => {
     setEditMode(!editMode);
