@@ -1,8 +1,8 @@
 import PostsContainer from './Posts/PostsContainer';
 import classes from './Profile.module.css';
-import unknown from '../../assets/unknown.png'
 import Loader from '../Loader/Loader';
 import StatusContainer from './Status/StatusContainer';
+import ProfilePhoto from './ProfilePhoto/ProfilePhoto';
 
 const Profile = (props) => {
   return (
@@ -10,7 +10,7 @@ const Profile = (props) => {
       <div className={classes.profile}>
         <h2>{props.user.fullName}</h2>
         <div className={classes.profileInfo}>
-          <img src={props.user.photos.large ? props.user.photos.large : unknown} alt="user_photo" className={classes.profilePhoto} />
+          <ProfilePhoto photo={props.user.photos.large} />
           <StatusContainer />
         </div>
         <PostsContainer />
