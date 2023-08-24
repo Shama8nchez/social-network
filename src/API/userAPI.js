@@ -24,6 +24,14 @@ const userAPI = {
   unfollowUser(userId) {
     return instance.delete(`follow/${userId}`)
   },
+
+  changePhoto(photo) {
+    const formData = new FormData();
+    formData.append('image', photo)
+    return instance.put(`profile/photo`, formData, {
+      'Content-Type': 'multipart/form-data'
+    })
+  }
 } 
 
 export default userAPI;

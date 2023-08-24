@@ -10,7 +10,7 @@ const Profile = (props) => {
       <div className={classes.profile}>
         <h2>{props.user.fullName}</h2>
         <div className={classes.profileInfo}>
-          <ProfilePhoto photo={props.user.photos.large} />
+          <ProfilePhoto photo={props.user.photos.large} changePhoto={props.changePhoto} />
           <StatusContainer />
         </div>
         <PostsContainer />

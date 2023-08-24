@@ -24,8 +24,8 @@ export const getProfileStatus = (id) => (dispatch) => {
 }
 
 export const sendProfileStatus = (status) => (dispatch) => {
-  profileAPI.setStatus(status).then(responce => {
-    if (responce.data.resultCode === 0) dispatch(setProfileStatus(status))
+  profileAPI.setStatus(status).then(response => {
+    if (response.data.resultCode === 0) dispatch(setProfileStatus(status))
   })
 }
 

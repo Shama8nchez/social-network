@@ -10,6 +10,7 @@ const GET_USER = 'GET_USER';
 const FOLLOWING_PROGRESS = 'FOLLOWING_PROGRESS';
 const FOLLOWING_PROGRESS_END = 'FOLLOWING_PROGRESS_END';
 const SET_CURRENT_PAGES_BLOCK = 'SET_CURRENT_PAGES_BLOCK';
+const SET_PHOTO = 'SET_PHOTO';
 
 export const followAC = (id) => ({type: FOLLOW_USER, id});
 export const unfollowAC = (id) => ({type: UNFOLLOW_USER, id});
@@ -21,6 +22,7 @@ export const getUserAC = (user) => ({type: GET_USER, user});
 export const followingProgressAC = (follow) => ({type: FOLLOWING_PROGRESS, follow});
 export const followingProgressEndAC = (follow) => ({type: FOLLOWING_PROGRESS_END, follow});
 export const setCurrentPagesBlockAC = (block) => ({type: SET_CURRENT_PAGES_BLOCK, block});
+export const setPhoto = (photo) => ({type: SET_PHOTO, photo})
 
 export const getUsers = (page = 1) => (dispatch) => {
   dispatch(loadingAC(true));
@@ -57,6 +59,12 @@ export const unfollowUser = (userId) => (dispatch) => {
       dispatch(followingProgressEndAC(userId));
     }
   });
+}
+
+export const changePhoto = (photo) => (dispatch) => {
+  userAPI.changePhoto(photo).then(response => {
+    if (response.data.resultCode === 0) dispatch(setPhoto(response.data.data.photos))
+  })
 }
 
 const initialState = {
@@ -146,6 +154,13 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         followingProgress: state.followingProgress.filter(id => id !== action.follow)
+      }
+    }
+    
+    case SET_PHOTO: {
+      return {
+        ...state,
+        user: { ...state.user, photos: action.photo}
       }
     }
 
