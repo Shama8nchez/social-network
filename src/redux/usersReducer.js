@@ -3,26 +3,31 @@ import userAPI from "../API/userAPI";
 const FOLLOW_USER = 'FOLLOW_USER';
 const UNFOLLOW_USER = 'UNFOLLOW_USER';
 const SET_USERS = 'SET_USERS';
+const SET_USERS_COUNT = 'SET_USERS_COUNT';
 const SET_PAGE = 'SET_PAGE';
 const LOADING = 'LOADING';
 const GET_USER = 'GET_USER';
 const FOLLOWING_PROGRESS = 'FOLLOWING_PROGRESS';
 const FOLLOWING_PROGRESS_END = 'FOLLOWING_PROGRESS_END';
+const SET_CURRENT_PAGES_BLOCK = 'SET_CURRENT_PAGES_BLOCK';
 
 export const followAC = (id) => ({type: FOLLOW_USER, id});
 export const unfollowAC = (id) => ({type: UNFOLLOW_USER, id});
 export const setUsersAC = (data) => ({type: SET_USERS, data});
 export const setPageAC = (page) => ({type: SET_PAGE, page});
+export const setUsersCountAC = (total) => ({type: SET_USERS_COUNT, total});
 export const loadingAC = (isLoading) => ({type: LOADING, isLoading});
 export const getUserAC = (user) => ({type: GET_USER, user});
 export const followingProgressAC = (follow) => ({type: FOLLOWING_PROGRESS, follow});
 export const followingProgressEndAC = (follow) => ({type: FOLLOWING_PROGRESS_END, follow});
+export const setCurrentPagesBlockAC = (block) => ({type: SET_CURRENT_PAGES_BLOCK, block});
 
 export const getUsers = (page = 1) => (dispatch) => {
   dispatch(loadingAC(true));
   dispatch(setPageAC(page));
   userAPI.getUsers(page).then(response => {
     dispatch(setUsersAC(response.data.items));
+    dispatch(setUsersCountAC(response.data.totalCount));
     dispatch(loadingAC(false));
   });
 }
@@ -57,9 +62,11 @@ export const unfollowUser = (userId) => (dispatch) => {
 const initialState = {
   users: [],
   totalPages: 10,
+  currentPagesBlock: 1,
   currentPage: 1,
   isLoading: false,
   user: null,
+  totalUsers: 1,
   followingProgress: [],
 }
 
@@ -92,6 +99,14 @@ const usersReducer = (state = initialState, action) => {
       }
     }
 
+    case SET_USERS_COUNT: {
+      return {
+        ...state,
+        totalUsers: action.total,
+        totalPages: Math.ceil(action.total/10)
+      }
+    }
+
     case SET_PAGE: {
       return {
         ...state,
@@ -110,6 +125,13 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user
+      }
+    }
+
+    case SET_CURRENT_PAGES_BLOCK: {
+      return {
+        ...state,
+        currentPagesBlock: action.block
       }
     }
 

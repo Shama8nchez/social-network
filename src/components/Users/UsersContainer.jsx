@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Users from "./Users";
-import { getUsers, followUser, unfollowUser } from "../../redux/usersReducer";
+import { getUsers, followUser, unfollowUser, setCurrentPagesBlockAC } from "../../redux/usersReducer";
 
 const mapStateToProps = (state) => {
   return {
@@ -9,9 +9,10 @@ const mapStateToProps = (state) => {
     currentPage: state.usersDB.currentPage,
     isLoading: state.usersDB.isLoading,
     followingProgress: state.usersDB.followingProgress,
+    currentPagesBlock: state.usersDB.currentPagesBlock,
   }
 }
 
-const UsersContainer = connect(mapStateToProps, {getUsers, followUser, unfollowUser})(Users);
+const UsersContainer = connect(mapStateToProps, {getUsers, followUser, unfollowUser, setCurrentPagesBlockAC})(Users);
 
 export default UsersContainer;
