@@ -4,16 +4,20 @@ import withRouter from "../../utils/withRouter";
 import { connect } from "react-redux";
 import { getUser, changePhoto } from "../../redux/usersReducer";
 import { getProfileStatus } from "../../redux/profileReducer";
+import { Navigate } from "react-router-dom";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
     let userID;
-    userID = this.props.router.params.userID ? this.props.router.params.userID : 29784
-    this.props.getUser(userID)
-    this.props.getProfileStatus(userID)
+    userID = this.props.router.params.userID ? this.props.router.params.userID : this.props.id
+    if (userID) {
+      this.props.getUser(userID)
+      this.props.getProfileStatus(userID)
+    }
   }
 
   render() {
+    if (!this.props.isLogin && !this.props.router.params.userID) return <Navigate to="/login" />
     return (
       <Profile {...this.props } user={this.props.user} />
     )
@@ -23,6 +27,8 @@ class ProfileContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     user: state.usersDB.user,
+    id: state.auth.id,
+    isLogin: state.auth.isLogin,
   }
 }
 
