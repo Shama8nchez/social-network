@@ -1,0 +1,52 @@
+.form {
+  margin-bottom: 20px;
+}
+
+.inputContainer {
+  width: 250px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.input {
+  width: 240px;
+  height: 22px;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #bdbdbd;
+  border-radius: 0.25rem;
+}
+
+.input::placeholder {
+  color: #212529;
+  opacity: 0.4;
+}
+
+.input:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #bdbdbd;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+}
+
+.label {
+  font-weight: 500;
+}
+
+.errors {
+  height: 18px;
+  font-size: 14px;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+}
+
+.button {
+  width: 240px;
+  height: 24px;
+}

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import classes from './Status.module.css'
 
 const Status = (props) => {
-  console.log(props.profileStatus)
   const [editMode, setEditMode] = useState(false);
   const [profileStatus, setProfileStatus] = useState(props.profileStatus);
 
@@ -24,12 +23,11 @@ const Status = (props) => {
 
   return (
     <div>
-      <p className={classes.statusTitle}>Status:</p>
       { editMode ?
       <div onBlur={toggleEditMode} >
         <input type="text" autoFocus className={classes.status} value={profileStatus} onChange={changeStatus} onBlur={sendProfileStatus}/>
       </div> :
-      <p className={classes.status} onClick={toggleEditMode}>{profileStatus}</p>}
+      <p className={classes.status} onClick={toggleEditMode}>{profileStatus || 'Set your status...'}</p>}
     </div>
     )
 

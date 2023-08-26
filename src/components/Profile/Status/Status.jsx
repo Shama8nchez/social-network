@@ -1,6 +1,8 @@
 import React from "react";
 import classes from './Status.module.css'
 
+//Use StatusWithHook
+
 class Status extends React.Component {
   state = {
     editMode: false,
@@ -26,7 +28,6 @@ class Status extends React.Component {
   render() {
     return (
       <div>
-        <p className={classes.statusTitle}>Status:</p>
         { this.state.editMode ?
         <div onBlur={this.toggleEditMode} >
           <input type="text" autoFocus className={classes.status} value={this.state.profileStatus} onChange={this.changeStatus} onBlur={this.sendProfileStatus}/>
