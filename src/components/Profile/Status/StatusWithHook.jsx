@@ -10,7 +10,7 @@ const Status = (props) => {
   }, [props.profileStatus])
 
   const toggleEditMode = () => {
-    setEditMode(!editMode);
+    if (props.user.userId === props.id) setEditMode(!editMode);
   }
 
   const changeStatus = (e) => {

@@ -73,7 +73,8 @@ const Profile = (props) => {
                 <div className={classes.emptyIcon}></div>
               }
             </div></> :  <ProfileForm props changeEditMode={changeEditMode} /> }
-            <span className={classes.edit} onClick={changeEditMode}>{!editMode ? 'Edit Profile' : 'Cancel'}</span>
+            {props.user.userId === props.id ? <span className={classes.edit} onClick={changeEditMode}>{!editMode ? 'Edit Profile' : 'Cancel'}</span> : <div></div>}
+            
           </div>
         </div>
         <PostsContainer />

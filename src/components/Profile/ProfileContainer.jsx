@@ -19,7 +19,7 @@ class ProfileContainer extends React.Component {
   render() {
     if (!this.props.isLogin && !this.props.router.params.userID) return <Navigate to="/login" />
     return (
-      <Profile {...this.props } user={this.props.user} />
+      <Profile {...this.props } user={this.props.user} id={this.props.id} />
     )
   }
 }

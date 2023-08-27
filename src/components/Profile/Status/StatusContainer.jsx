@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 class StatusContainer extends React.Component {
   render() {
     return (
-      <Status profileStatus={this.props.profileStatus} sendProfileStatus={this.props.sendProfileStatus} />
+      <Status profileStatus={this.props.profileStatus} sendProfileStatus={this.props.sendProfileStatus} id={this.props.id} user={this.props.user} />
     )
   }
 }
@@ -14,6 +14,8 @@ class StatusContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     profileStatus: state.postsDB.profileStatus,
+    user: state.usersDB.user,
+    id: state.auth.id,
   }
 }
 
