@@ -14,6 +14,17 @@ import mainLink from '../../assets/main.svg';
 import website from '../../assets/website.svg';
 import { useState } from 'react';
 
+const icons = {
+  github: github,
+  vk: vk,
+  facebook: facebook,
+  instagram: instagram,
+  twitter: twitter,
+  youtube: youtube,
+  mainLink: mainLink,
+  website: website,
+}
+
 const Profile = (props) => {
   const [editMode, setEditMode] = useState(false);
 
@@ -40,38 +51,11 @@ const Profile = (props) => {
             }
             <div>
               <div className={classes.contacts}><b>Contacts</b></div>
-              {props.user.contacts.github ?
-                <div className={classes.icon}><a href={props.user.contacts.github}><img src={github} alt='gh' className={classes.icon} /></a></div> :
-                <div className={classes.emptyIcon}></div>
-              }
-              {props.user.contacts.vk ?
-                <div className={classes.icon}><a href={props.user.contacts.vk}><img src={vk} alt='vk' className={classes.icon} /></a></div> :
-                <div className={classes.emptyIcon}></div>
-              }
-              {props.user.contacts.facebook ?
-                <div className={classes.icon}><a href={props.user.contacts.facebook}><img src={facebook} alt='facebook' className={classes.icon} /></a></div> :
-                <div className={classes.emptyIcon}></div>
-              }
-              {props.user.contacts.instagram ?
-                <div className={classes.icon}><a href={props.user.contacts.instagram}><img src={instagram} alt='instagram' className={classes.icon} /></a></div> :
-                <div className={classes.emptyIcon}></div>
-              }
-              {props.user.contacts.twitter ?
-                <div className={classes.icon}><a href={props.user.contacts.twitter}><img src={twitter} alt='twitter' className={classes.icon} /></a></div> :
-                <div className={classes.emptyIcon}></div>
-              }
-              {props.user.contacts.website ?
-                <div className={classes.icon}><a href={props.user.contacts.website}><img src={website} alt='website' className={classes.icon} /></a></div> :
-                <div className={classes.emptyIcon}></div>
-              }
-              {props.user.contacts.youtube ?
-                <div className={classes.icon}><a href={props.user.contacts.youtube}><img src={youtube} alt='youtube' className={classes.icon} /></a></div> :
-                <div className={classes.emptyIcon}></div>
-              }
-              {props.user.contacts.mainLink ?
-                <div className={classes.icon}><a href={props.user.contacts.mainLink}><img src={mainLink} alt='mainLink' className={classes.icon} /></a></div> :
-                <div className={classes.emptyIcon}></div>
-              }
+              {(Object.keys(props.user.contacts)).map((item) => (
+                props.user.contacts[item] ?
+                  <div className={classes.icon}><a href={props.user.contacts[item]}><img src={icons[item]} alt={item} className={classes.icon} /></a></div> :
+                  <div className={classes.emptyIcon}></div>
+              ))}
             </div></> :  <ProfileForm props changeEditMode={changeEditMode} /> }
             {props.user.userId === props.id ? <span className={classes.edit} onClick={changeEditMode}>{!editMode ? 'Edit Profile' : 'Cancel'}</span> : <div></div>}
             
