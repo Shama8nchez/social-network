@@ -1,22 +1,29 @@
 .form {
   margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .inputContainer {
-  width: 250px;
+  width: 300px;
   margin: 0 auto;
   margin-bottom: 5px;
   text-align: left;
 }
 
 .input {
-  width: 240px;
+  width: 280px;
   height: 22px;
   color: #212529;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #bdbdbd;
   border-radius: 0.25rem;
+}
+
+.inputArea {
+  height: 177px;
 }
 
 .input::placeholder {
@@ -44,6 +51,11 @@
 .checkbox {
   width: 16px;
   height: 16px;
+}
+
+.buttonContainer {
+  width: 100%;
+  text-align: center;
 }
 
 .button {

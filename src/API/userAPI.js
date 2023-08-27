@@ -31,7 +31,39 @@ const userAPI = {
     return instance.put(`profile/photo`, formData, {
       'Content-Type': 'multipart/form-data'
     })
-  }
+  },
+
+  updateUser(userId,
+    fullName,
+    lookingForAJob,
+    lookingForAJobDescription,
+    github,
+    vk,
+    facebook,
+    instagram,
+    twitter,
+    website,
+    youtube,
+    mainLink) {
+      return instance.put('profile/', {
+        aboutMe: 'aboutMe',
+        userId,
+        fullName,
+        lookingForAJob,
+        lookingForAJobDescription,
+        contacts: {
+          github,
+          vk,
+          facebook,
+          instagram,
+          twitter,
+          website,
+          youtube,
+          mainLink
+        }
+        
+      })
+    }
 } 
 
 export default userAPI;

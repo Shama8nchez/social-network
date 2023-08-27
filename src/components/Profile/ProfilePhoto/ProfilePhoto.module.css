@@ -3,6 +3,7 @@
 }
 
 .profilePic {
+  align-self: flex-start;
   color: transparent;
   transition: all 0.3s ease;
   display: flex;

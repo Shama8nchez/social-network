@@ -4,6 +4,7 @@
 
 h2 {
   margin: 0;
+  text-align: center;
 }
 
 .profileInfo {
@@ -11,8 +12,40 @@ h2 {
   justify-content: flex-start;
   gap: 20px;
   padding: 10px;
+  text-align: left;
 }
 
 .TitleStatus {
   flex-grow: 1;
+}
+
+.icon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+  margin-bottom: 22px;
+}
+
+.emptyIcon {
+  display: inline-block;
+}
+
+.jobDescription {
+  padding-left: 31px;
+  margin-bottom: 10px;
+}
+
+.contacts {
+  margin-bottom: 5px;
+}
+
+
+.edit {
+  display: block;
+  width: 80px;
+  margin-left: auto;
+  text-decoration-line: underline;
+  text-align: center;
+  cursor: pointer;
 }

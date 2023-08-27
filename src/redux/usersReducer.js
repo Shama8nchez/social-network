@@ -41,6 +41,34 @@ export const getUser = (userId) => (dispatch) => {
     })
 }
 
+export const updateProfile = (userId,
+  fullName,
+  lookingForAJob,
+  lookingForAJobDescription,
+  github,
+  vk,
+  facebook,
+  instagram,
+  twitter,
+  website,
+  youtube,
+  mainLink) => (dispatch) => {
+  userAPI.updateUser(userId,
+    fullName,
+    lookingForAJob,
+    lookingForAJobDescription,
+    github,
+    vk,
+    facebook,
+    instagram,
+    twitter,
+    website,
+    youtube,
+    mainLink).then(response => {
+      if (response.data.resultCode === 0) dispatch(getUser(userId))
+    })
+}
+
 export const followUser = (userId) => (dispatch) => {
   dispatch(followingProgressAC(userId));
   userAPI.followUser(userId).then(response => {
