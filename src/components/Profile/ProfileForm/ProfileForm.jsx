@@ -2,6 +2,7 @@ import { Formik, Field, Form } from 'formik';
 import classes from './ProfileForm.module.css';
 import { connect } from 'react-redux';
 import { updateProfile } from '../../../redux/usersReducer'
+import ProfileFormInput from './ProfileFormInput/ProfileFormInput';
 
 const ProfileForm = (props) => {
   
@@ -34,7 +35,7 @@ const ProfileForm = (props) => {
           values.website,
           values.youtube,
           values.mainLink);
-          props.changeEditMode();
+        props.changeEditMode();
       }}
     >
       {({ values, handleChange }) => (
@@ -42,11 +43,7 @@ const ProfileForm = (props) => {
 
           <div>
             <h3>Job information</h3>
-            <div className={classes.inputContainer} >
-              <div>
-                <Field id="fullName" name="fullName" placeholder="Full Name" onChange={handleChange} value={values.fullName} className={classes.input} /> 
-              </div>
-            </div>
+            <ProfileFormInput contact="fullName" handleChange={handleChange} values={values} />
 
             <div className={classes.inputContainer} >
               <label htmlFor="lookingForAJob" className={classes.label}>Looking for a job:</label>
@@ -63,62 +60,16 @@ const ProfileForm = (props) => {
           
           <div>
             <h3>Contacts</h3>
-            <div className={classes.inputContainer} >
-              <div>
-                <Field id="github" name="github" placeholder="github" onChange={handleChange} value={values.github} className={classes.input} /> 
-              </div>
-            </div>
-
-            <div className={classes.inputContainer} >
-              <div>
-                <Field id="vk" name="vk" placeholder="vk" onChange={handleChange} value={values.vk} className={classes.input} /> 
-              </div>
-            </div>
-
-            <div className={classes.inputContainer} >
-              <div>
-                <Field id="facebook" name="facebook" placeholder="facebook" onChange={handleChange} value={values.facebook} className={classes.input} /> 
-              </div>
-            </div>
-
-            <div className={classes.inputContainer} >
-              <div>
-                <Field id="instagram" name="instagram" placeholder="instagram" onChange={handleChange} value={values.instagram} className={classes.input} /> 
-              </div>
-            </div>
-
-            <div className={classes.inputContainer} >
-              <div>
-                <Field id="twitter" name="twitter" placeholder="twitter" onChange={handleChange} value={values.twitter} className={classes.input} /> 
-              </div>
-            </div>
-
-            <div className={classes.inputContainer} >
-              <div>
-                <Field id="website" name="website" placeholder="website" onChange={handleChange} value={values.website} className={classes.input} /> 
-              </div>
-            </div>
-
-            <div className={classes.inputContainer} >
-              <div>
-                <Field id="youtube" name="youtube" placeholder="youtube" onChange={handleChange} value={values.youtube} className={classes.input} /> 
-              </div>
-            </div>
-
-            <div className={classes.inputContainer} >
-              <div>
-                <Field id="mainLink" name="mainLink" placeholder="mainLink" onChange={handleChange} value={values.mainLink} className={classes.input} /> 
-              </div>
-            </div>
+            {(Object.keys(props.user.contacts)).map((item) => 
+              <ProfileFormInput contact={item} handleChange={handleChange} values={values} key={item} />
+            )}
           </div>
           
           <div className={classes.buttonContainer}>
             <button type="submit" className={classes.button}>Update</button>
-          </div>
-          
+          </div> 
         </Form>
       )}
-      
     </Formik>
   )
 }

@@ -7,7 +7,7 @@ import { getProfileStatus } from "../../redux/profileReducer";
 import { Navigate } from "react-router-dom";
 
 class ProfileContainer extends React.Component {
-  componentDidMount() {
+  getUserData() {
     let userID;
     userID = this.props.router.params.userID ? this.props.router.params.userID : this.props.id
     if (userID) {
@@ -16,15 +16,12 @@ class ProfileContainer extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.getUserData();
+  }
+
   componentDidUpdate(prevProps) {
-    if (this.props.router.params.userID !== prevProps.router.params.userID) {
-      let userID;
-      userID = this.props.router.params.userID ? this.props.router.params.userID : this.props.id
-      if (userID) {
-        this.props.getUser(userID)
-        this.props.getProfileStatus(userID)
-      }
-    }
+    if (this.props.router.params.userID !== prevProps.router.params.userID) this.getUserData();
   }
 
   render() {
