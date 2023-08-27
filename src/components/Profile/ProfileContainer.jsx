@@ -16,6 +16,17 @@ class ProfileContainer extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.router.params.userID !== prevProps.router.params.userID) {
+      let userID;
+      userID = this.props.router.params.userID ? this.props.router.params.userID : this.props.id
+      if (userID) {
+        this.props.getUser(userID)
+        this.props.getProfileStatus(userID)
+      }
+    }
+  }
+
   render() {
     if (!this.props.isLogin && !this.props.router.params.userID) return <Navigate to="/login" />
     return (
