@@ -52,13 +52,13 @@ const Profile = (props) => {
             <div>
               <div className={classes.contacts}><b>Contacts</b></div>
               {(Object.keys(props.user.contacts)).map((item) => (
-                props.user.contacts[item] ?
-                  <div className={classes.icon}><a href={props.user.contacts[item]}><img src={icons[item]} alt={item} className={classes.icon} /></a></div> :
-                  <div className={classes.emptyIcon}></div>
+                props.user.contacts[item] &&
+                  <div className={classes.icon} key={'div' + item}>
+                    <a href={props.user.contacts[item]}><img src={icons[item]} alt={item} className={classes.icon} /></a>
+                  </div>
               ))}
             </div></> :  <ProfileForm props changeEditMode={changeEditMode} /> }
-            {props.user.userId === props.id ? <span className={classes.edit} onClick={changeEditMode}>{!editMode ? 'Edit Profile' : 'Cancel'}</span> : <div></div>}
-            
+            {props.user.userId === props.id && <span className={classes.edit} onClick={changeEditMode}>{!editMode ? 'Edit Profile' : 'Cancel'}</span>}
           </div>
         </div>
         <PostsContainer />

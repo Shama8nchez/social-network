@@ -6,7 +6,10 @@ const Header = (props) => {
     <header className={classes.header}>
       <div className={classes.login}><NavLink to={'/about'} className={classes.link}>Social Network</NavLink></div>
       <div className={classes.login}>
-        {props.isLogin ? <span>{props.login} <span className={classes.logout} onClick={props.logout}>(LOGOUT)</span></span> : <NavLink to={'/login'} className={classes.link}>LOGIN</NavLink>}
+        {props.isLogin ?
+          <span>{props.login} <span className={classes.logout} onClick={props.logout}>(LOGOUT)</span></span> :
+          <NavLink to={'/login'} className={classes.link}>LOGIN</NavLink>
+        }
       </div>
     </header>
   )

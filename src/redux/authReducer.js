@@ -1,8 +1,10 @@
 import authAPI from "../API/authAPI";
 
 const SET_AUTH_USER = 'SET_AUTH_USER';
+const GET_CAPTCHA = 'GET_CAPTCHA';
 
 export const setAuthUserAC = (authData) => ({type: SET_AUTH_USER, authData});
+export const getCapthaSuccess = (captcha) => ({type: GET_CAPTCHA, captcha});
 
 export const setAuthUser = () => async (dispatch) => {
   return authAPI.setAuthUser().then(response => {
@@ -17,10 +19,13 @@ export const setAuthUser = () => async (dispatch) => {
   });
 }
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-  authAPI.login(email, password, rememberMe).then(response => {
+export const login = (email, password, rememberMe, captcha) => (dispatch) => {
+  authAPI.login(email, password, rememberMe, captcha).then(response => {
     if (response.data.resultCode === 0) {
       dispatch(setAuthUser());
+    }
+    if (response.data.resultCode === 10) {
+      dispatch(getCaptcha())
     }
   })
 }
@@ -33,11 +38,18 @@ export const logout = () => (dispatch) => {
   })
 }
 
+export const getCaptcha = () => (dispatch) => {
+  authAPI.getCaptcha().then(response => {
+    dispatch(getCapthaSuccess(response.data.url))
+  })
+}
+
 const initialState = {
   id: null,
   login: null,
   email: null,
-  isLogin: false
+  isLogin: false,
+  captcha: null,
 }
 
 const authReducer = (state = initialState, action) => {
@@ -46,6 +58,13 @@ const authReducer = (state = initialState, action) => {
       return { 
         ...state,
         ...action.authData,
+      }
+    }
+
+    case GET_CAPTCHA: {
+      return { 
+        ...state,
+        captcha: action.captcha,
       }
     }
 

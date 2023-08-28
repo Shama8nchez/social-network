@@ -10,7 +10,7 @@ const Login = (props) => {
   return (
     <div>
       <h1>Sign In</h1>
-      <LoginForm login={props.login} />
+      <LoginForm login={props.login} captcha={props.captcha} />
     </div>
     
   )
@@ -24,6 +24,7 @@ const LoginForm = (props) => {
         Login: '',
         Password: '',
         RememeberMe: false,
+        captcha: props.captcha || '',
       }}
       validate={values => {
         const errors = {};
@@ -40,7 +41,7 @@ const LoginForm = (props) => {
         return errors;
       }}
       onSubmit={(values) => {
-        props.login(values.Login, values.Password, values.RememeberMe)
+        props.login(values.Login, values.Password, values.RememeberMe, values.captcha)
       }}
     >
       {({ values, errors, touched, handleChange }) => (
@@ -70,6 +71,13 @@ const LoginForm = (props) => {
             <Field id="RememeberMe" name="RememeberMe" type="checkbox" className={classes.checkbox} />
           </div>
 
+          {props.captcha && <div>
+            <div><img src={props.captcha} alt='captcha'/></div>
+            <div className={classes.inputContainer} >
+              <Field id="captcha" name="captcha" onChange={handleChange} value={values.captcha} className={classes.input} />
+            </div>
+          </div>}
+
           <button type="submit" className={classes.button}>SIGN IN</button>
         </Form>
       )}
@@ -80,7 +88,8 @@ const LoginForm = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    isLogin: state.auth.isLogin
+    isLogin: state.auth.isLogin,
+    captcha: state.auth.captcha,
   }
 }
 
