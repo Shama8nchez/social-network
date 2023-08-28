@@ -37,6 +37,7 @@ const mapStateToProps = (state) => {
     user: state.usersDB.user,
     id: state.auth.id,
     isLogin: state.auth.isLogin,
+    isLoading: state.usersDB.isLoading,
   }
 }
 

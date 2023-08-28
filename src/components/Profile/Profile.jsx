@@ -33,7 +33,7 @@ const Profile = (props) => {
   }
 
   return (
-    props.user ?
+    props.user && !props.isLoading ?
       <div className={classes.profile}>
         
         <div className={classes.profileInfo}>

@@ -7,6 +7,7 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Login from './components/Login/Login';
+import About from './components/About/About';
 import { compose } from 'redux';
 import withRouter from './utils/withRouter';
 import { connect } from 'react-redux';
@@ -35,6 +36,7 @@ class App extends React.Component {
               <Route path='/login' element={<Login />} />
               <Route path='/dialogs/*' element={<DialogsContainer />} />
               <Route path='/users' element={<UsersContainer />} />
+              <Route path='/about' element={<About />} />
             </Routes>
           </div>
         </main>

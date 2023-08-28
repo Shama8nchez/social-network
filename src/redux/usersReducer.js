@@ -35,9 +35,11 @@ export const getUsers = (page = 1) => (dispatch) => {
 }
 
 export const getUser = (userId) => (dispatch) => {
+  dispatch(loadingAC(true));
   userAPI.getUser(userId)
     .then(response => {
-      dispatch(getUserAC(response.data))
+        dispatch(getUserAC(response.data));
+        dispatch(loadingAC(false));
     })
 }
 
