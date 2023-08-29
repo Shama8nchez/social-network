@@ -7,7 +7,7 @@ const User = (props) => {
     <div className={classes.user}>
       <div className={classes.userInfo}>
         
-        <NavLink to={`/${props.id}`} className={classes.userLink}>
+        <NavLink to={`/profile/${props.id}`} className={classes.userLink}>
           {props.user.name}
           <br />
           <img src={props.user.photos.small ? props.user.photos.small : unknown} alt='user' className={classes.avatar} />

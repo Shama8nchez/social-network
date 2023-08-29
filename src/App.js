@@ -13,6 +13,7 @@ import withRouter from './utils/withRouter';
 import { connect } from 'react-redux';
 import { initializingApp } from './redux/appReducer';
 import Loader from './components/Loader/Loader';
+import NotFound from './components/NotFound/NotFound';
 
 class App extends React.Component {
   componentDidMount() {
@@ -32,11 +33,12 @@ class App extends React.Component {
           <div className='content'>
             <Routes>
               <Route path='/' element={<ProfileContainer />} />
-              <Route path='/:userID' element={<ProfileContainer />} />
+              <Route path='/profile/:userID' element={<ProfileContainer />} />
               <Route path='/login' element={<Login />} />
               <Route path='/dialogs/*' element={<DialogsContainer />} />
               <Route path='/users' element={<UsersContainer />} />
               <Route path='/about' element={<About />} />
+              <Route path='/*' element={<NotFound />} />
             </Routes>
           </div>
         </main>
