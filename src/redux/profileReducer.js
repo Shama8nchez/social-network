@@ -38,8 +38,7 @@ const profileReducer = (state = initialState, action) => {
           posts: [ ...state.posts, { id: 5, post: state.newPost, likesCount: 0 } ],
           newPost: '',
         }
-      }
-      break;
+      } else return { ...state};
     }
 
     case TYPE_POST: {

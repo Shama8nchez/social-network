@@ -29,9 +29,9 @@ const dialogReducer = (state = initialState, action) => {
           messages: [ ...state.messages, { id: 4, message: state.newMessage } ],
           newMessage: '',
         }
-      }
-      break;
+      } else return { ...state};
     }
+    
     case TYPE_MESSAGE: {
       return {
         ...state,

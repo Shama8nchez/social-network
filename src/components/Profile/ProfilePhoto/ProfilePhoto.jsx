@@ -8,13 +8,14 @@ const ProfilePhoto = (props) => {
 
   return (
     <div className={classes.profilePic}>
-      <label className={props.photo ? classes.label : classes.label + ' ' + classes.profilePhoto} htmlFor="file">
-        <span>Change Image</span>
-      </label>
+      {props.user.userId === props.id ? 
+        <label className={props.photo ? classes.label : classes.label + ' ' + classes.profilePhoto} htmlFor="file">
+          <span>Change Image</span>
+        </label> :
+        <label className={classes.labelHide} htmlFor="file"></label>}
       <input id="file" type="file" accept="image/jpeg,image/jpg" onChange={handleChange} />
       <img src={props.photo ? props.photo : unknown} alt="user_photo" className={props.photo ? '' : classes.profilePhoto} />
     </div>
-    
   )
 }
 

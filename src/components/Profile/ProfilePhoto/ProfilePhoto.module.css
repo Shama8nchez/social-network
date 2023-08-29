@@ -43,6 +43,11 @@
   margin-bottom: 0;
 }
 
+.profilePic .labelHide {
+  height: 225px;
+  width: 225px;
+}
+
 .profilePic span {
   display: inline-flex;
   padding: 0.2em;

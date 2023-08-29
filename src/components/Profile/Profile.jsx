@@ -18,7 +18,7 @@ const Profile = (props) => {
     props.user && !props.isLoading ?
       <div className={classes.profile}>
         <div className={classes.profileInfo}>
-          <ProfilePhoto photo={props.user.photos.large} changePhoto={props.changePhoto} />
+          <ProfilePhoto photo={props.user.photos.large} changePhoto={props.changePhoto} user={props.user} id={props.id} />
           <div className={classes.TitleStatus}>
             <h2>{props.user.fullName}</h2>
             <StatusContainer />
