@@ -10,7 +10,7 @@ const Login = (props) => {
   return (
     <div>
       <h1>Sign In</h1>
-      <LoginForm login={props.login} captcha={props.captcha} />
+      <LoginForm login={props.login} captcha={props.captcha} errorText={props.errorText} />
     </div>
     
   )
@@ -70,7 +70,7 @@ const LoginForm = (props) => {
             <label htmlFor="RememeberMe" className={classes.label}>Remember me</label>
             <Field id="RememeberMe" name="RememeberMe" type="checkbox" className={classes.checkbox} />
           </div>
-
+          <div>{props.errorText}</div>
           {props.captcha && <div>
             <div><img src={props.captcha} alt='captcha'/></div>
             <div className={classes.inputContainer} >
@@ -90,6 +90,7 @@ const mapStateToProps = (state) => {
   return {
     isLogin: state.auth.isLogin,
     captcha: state.auth.captcha,
+    errorText: state.auth.errorText,
   }
 }
 

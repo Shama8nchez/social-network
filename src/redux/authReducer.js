@@ -2,9 +2,11 @@ import authAPI from "../API/authAPI";
 
 const SET_AUTH_USER = 'SET_AUTH_USER';
 const GET_CAPTCHA = 'GET_CAPTCHA';
+const SHOW_NOTIFICATION ='SHOW_NOTIFICATION';
 
 export const setAuthUserAC = (authData) => ({type: SET_AUTH_USER, authData});
 export const getCapthaSuccess = (captcha) => ({type: GET_CAPTCHA, captcha});
+export const showError = (text) => ({type: SHOW_NOTIFICATION, text});
 
 export const setAuthUser = () => async (dispatch) => {
   return authAPI.setAuthUser().then(response => {
@@ -20,12 +22,16 @@ export const setAuthUser = () => async (dispatch) => {
 }
 
 export const login = (email, password, rememberMe, captcha) => (dispatch) => {
+  dispatch(showError('Wait...'));
   authAPI.login(email, password, rememberMe, captcha).then(response => {
     if (response.data.resultCode === 0) {
       dispatch(setAuthUser());
-    }
-    if (response.data.resultCode === 10) {
-      dispatch(getCaptcha())
+      dispatch(showError(''));
+    } else if (response.data.resultCode === 10) {
+      dispatch(getCaptcha());
+      dispatch(showError('Incorrect email or password'));
+    } else {
+      dispatch(showError('Incorrect email or password'));
     }
   })
 }
@@ -50,6 +56,7 @@ const initialState = {
   email: null,
   isLogin: false,
   captcha: null,
+  errorText: '',
 }
 
 const authReducer = (state = initialState, action) => {
@@ -65,6 +72,13 @@ const authReducer = (state = initialState, action) => {
       return { 
         ...state,
         captcha: action.captcha,
+      }
+    }
+
+    case SHOW_NOTIFICATION: {
+      return { 
+        ...state,
+        errorText: action.text,
       }
     }
 
